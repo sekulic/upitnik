@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upitnik</title>
+  <%= stylesheet_link_tag    'cerulean', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'cerulean' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/navbar' %> 
+	<div class="container theme-showcase">
+		<div class="row">      	
+			<%= yield %>
+		</div>   
+	<%= render 'layouts/footer' %> 
+</body>
+</html>
