@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'twitter-bootswatch-rails', '~> 3.2.0'
 gem 'twitter-bootswatch-rails-helpers'
-
+gem "nested_form"
 gem 'spring',        group: :development
 
 group :development, :test do

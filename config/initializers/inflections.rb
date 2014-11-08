@@ -10,6 +10,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'kategorija', 'kategorije'
   inflect.irregular 'anketa', 'ankete'
   inflect.irregular 'pitanje', 'pitanja'  
+  inflect.irregular 'odgovor', 'odgovori'   
 end
 
 # These inflection rules are supported but not enabled by default:

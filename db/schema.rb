@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106195547) do
+ActiveRecord::Schema.define(version: 20141108165415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141106195547) do
     t.text     "opis"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "kategorija_id"
   end
 
   create_table "kategorije", force: true do |t|
@@ -28,5 +29,23 @@ ActiveRecord::Schema.define(version: 20141106195547) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "odgovori", force: true do |t|
+    t.integer  "pitanje_id"
+    t.string   "sadrzaj"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "odgovori", ["pitanje_id"], name: "index_odgovori_on_pitanje_id", using: :btree
+
+  create_table "pitanja", force: true do |t|
+    t.integer  "anketa_id"
+    t.text     "sadrzaj"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pitanja", ["anketa_id"], name: "index_pitanja_on_anketa_id", using: :btree
 
 end

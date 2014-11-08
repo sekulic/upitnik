@@ -23,10 +23,13 @@ RSpec.describe AnketeController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # Anketa. As you add validations to Anketa, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
+  let(:valid_attributes) do
+    {
+      naslov: "MyString",
+      opis: "MyText",
+      kategorija_id: 1,
+    }
+  end
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
@@ -40,7 +43,7 @@ RSpec.describe AnketeController, :type => :controller do
     it "assigns all ankete as @ankete" do
       anketa = Anketa.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:ankete)).to eq([anketa])
+      expect(controller.ankete).to eq([anketa])
     end
   end
 
@@ -48,14 +51,14 @@ RSpec.describe AnketeController, :type => :controller do
     it "assigns the requested anketa as @anketa" do
       anketa = Anketa.create! valid_attributes
       get :show, {:id => anketa.to_param}, valid_session
-      expect(assigns(:anketa)).to eq(anketa)
+      expect(controller.anketa).to eq(anketa)
     end
   end
 
   describe "GET new" do
     it "assigns a new anketa as @anketa" do
       get :new, {}, valid_session
-      expect(assigns(:anketa)).to be_a_new(Anketa)
+      expect(controller.anketa).to be_a_new(Anketa)
     end
   end
 
@@ -63,7 +66,7 @@ RSpec.describe AnketeController, :type => :controller do
     it "assigns the requested anketa as @anketa" do
       anketa = Anketa.create! valid_attributes
       get :edit, {:id => anketa.to_param}, valid_session
-      expect(assigns(:anketa)).to eq(anketa)
+      expect(controller.anketa).to eq(anketa)
     end
   end
 
@@ -77,8 +80,8 @@ RSpec.describe AnketeController, :type => :controller do
 
       it "assigns a newly created anketa as @anketa" do
         post :create, {:anketa => valid_attributes}, valid_session
-        expect(assigns(:anketa)).to be_a(Anketa)
-        expect(assigns(:anketa)).to be_persisted
+        expect(controller.anketa).to be_a(Anketa)
+        expect(controller.anketa).to be_persisted
       end
 
       it "redirects to the created anketa" do
@@ -90,7 +93,7 @@ RSpec.describe AnketeController, :type => :controller do
     describe "with invalid params" do
       it "assigns a newly created but unsaved anketa as @anketa" do
         post :create, {:anketa => invalid_attributes}, valid_session
-        expect(assigns(:anketa)).to be_a_new(Anketa)
+        expect(controller.anketa).to be_a_new(Anketa)
       end
 
       it "re-renders the 'new' template" do
@@ -102,21 +105,25 @@ RSpec.describe AnketeController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) do
+        {
+          naslov: "MyString",
+          opis: "MyText",
+          kategorija_id: 1,
+        }
+      end
 
       it "updates the requested anketa" do
         anketa = Anketa.create! valid_attributes
         put :update, {:id => anketa.to_param, :anketa => new_attributes}, valid_session
         anketa.reload
-        skip("Add assertions for updated state")
+        expect(controller.anketa).to eq(anketa)
       end
 
       it "assigns the requested anketa as @anketa" do
         anketa = Anketa.create! valid_attributes
         put :update, {:id => anketa.to_param, :anketa => valid_attributes}, valid_session
-        expect(assigns(:anketa)).to eq(anketa)
+        expect(controller.anketa).to eq(anketa)
       end
 
       it "redirects to the anketa" do
@@ -130,7 +137,7 @@ RSpec.describe AnketeController, :type => :controller do
       it "assigns the anketa as @anketa" do
         anketa = Anketa.create! valid_attributes
         put :update, {:id => anketa.to_param, :anketa => invalid_attributes}, valid_session
-        expect(assigns(:anketa)).to eq(anketa)
+        expect(controller.anketa).to eq(anketa)
       end
 
       it "re-renders the 'edit' template" do

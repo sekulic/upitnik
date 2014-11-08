@@ -1,8 +1,29 @@
-<%= simple_form_for @anketa, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :naslov %>
-  <%= f.input :opis %>
+<%= nested_form_for anketa, :html => { :class => 'form-horizontal' } do |f| %>
+<ul>
+  <% anketa.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+  <%= f.text_field :naslov %>
+  <%= f.text_area :opis %>
+  <%= f.select :kategorija_id, kategorije.collect {|p| [ p.	ime, p.id ] }, {}, :class => 'form-control', :include_blank => false%>
+  <%= f.fields_for :pitanja do |b| %>
+  <p>
+    <%= b.text_field :sadrzaj%>
+    <% f.fields_for :odgovori do |p| %>
+  	<p>
+	  <%= f.label :sadrzaj, "Odgovor" %>
+	  <%= f.text_field :sadrzaj %>
+	  <%= p.link_to_remove "Skloni odgovor" %>
+	</p>
+	<% end %>
+	<p><%= f.link_to_add "Dodaj odgovor", :odgovori %></p>
+    <%= b.link_to_remove "Skloni pitanje" %>       
+  </p>
+  <% end %>
+  <p><%= f.link_to_add "Dodaj pitanje", :pitanja %></p>
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn btn-primary' %>
+    <%= f.submit 'Kreiraj Anketu', :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 ankete_path, :class => 'btn' %>
   </div>

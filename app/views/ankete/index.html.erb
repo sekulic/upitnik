@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @ankete.each do |anketa| %>
+    <% ankete.each do |anketa| %>
       <tr>
         <td><%= link_to anketa.id, anketa_path(anketa) %></td>
         <td><%= anketa.naslov %></td>
