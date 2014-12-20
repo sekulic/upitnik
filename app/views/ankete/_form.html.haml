@@ -1,0 +1,27 @@
+= nested_form_for anketa, :html => { :class => 'form-horizontal' } do |f|
+  - if anketa.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(anketa.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - anketa.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :naslov
+    = f.text_field :naslov, class: 'form-control'
+  .form-group
+    = f.label :opis
+    = f.text_area :opis, class: 'form-control'
+  .form-group
+    = f.label :kategorija_id
+    = f.select :kategorija_id, kategorije.collect {|p| [ p.	ime, p.id ] }, {}, :class => 'form-control', :include_blank => false, class: 'form-control'
+  = f.fields_for :pitanja do |b|
+    = b.text_field :sadrzaj
+    = b.fields_for :odgovori do |p|
+      = p.label :sadrzaj, "Odgovor"
+      = p.text_field :sadrzaj 
+      = p.link_to_remove "Skloni odgovor"
+    = b.link_to_add "Dodaj odgovor", :odgovori
+    = b.link_to_remove "Skloni pitanje"      
+  = f.link_to_add "Dodaj pitanje", :pitanja
+  = f.submit 'Sacuvaj Anketu', :class => "btn btn-info"
