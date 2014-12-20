@@ -10,14 +10,14 @@
   <%= f.fields_for :pitanja do |b| %>
   <p>
     <%= b.text_field :sadrzaj%>
-    <% f.fields_for :odgovori do |p| %>
+    <% b.fields_for :odgovori do |p| %>
   	<p>
-	  <%= f.label :sadrzaj, "Odgovor" %>
-	  <%= f.text_field :sadrzaj %>
+	  <%= p.label :sadrzaj, "Odgovor" %>
+	  <%= p.text_field :sadrzaj %>
 	  <%= p.link_to_remove "Skloni odgovor" %>
 	</p>
 	<% end %>
-	<p><%= f.link_to_add "Dodaj odgovor", :odgovori %></p>
+	<p><%= b.link_to_add "Dodaj odgovor", :odgovori %></p>
     <%= b.link_to_remove "Skloni pitanje" %>       
   </p>
   <% end %>

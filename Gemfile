@@ -9,6 +9,7 @@ gem 'decent_decoration'
 gem 'simple_form', '~> 3.1.0rc'
 gem 'quiet_assets'
 gem 'jquery-rails'
+gem 'haml-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'sass-rails', '~> 4.0.3'
