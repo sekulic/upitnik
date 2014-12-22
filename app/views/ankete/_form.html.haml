@@ -5,25 +5,32 @@
       %ul
         - anketa.errors.full_messages.each do |msg|
           %li= msg
-
-  .form-group
-    = f.label :naslov
-    = f.text_field :naslov, class: 'form-control'
-  .form-group
-    = f.label :opis
-    = f.text_area :opis, class: 'form-control'
-  .form-group
-    = f.label :kategorija_id
-    = f.select :kategorija_id, kategorije.collect {|p| [ p.	ime, p.id ] }, {}, :class => 'form-control', :include_blank => false, class: 'form-control'
-  = f.fields_for :pitanja do |b|
+  .well.bs-component
     .form-group
-      = f.label "pitanje"
-      = b.text_field :sadrzaj, class: 'form-control'
+      = f.label :naslov
+      = f.text_field :naslov, class: 'form-control'
+    .form-group
+      = f.label :opis
+      = f.text_area :opis, class: 'form-control'
+    .form-group
+      = f.label :kategorija_id
+      = f.select :kategorija_id, kategorije.collect {|p| [ p.	ime, p.id ] }, {}, :class => 'form-control', :include_blank => false, class: 'form-control'
+  = f.fields_for :pitanja do |b|
+    .well.bs-component
+      .form-group
+        .col-lg-9
+          = f.label "pitanje"
+          = b.text_field :sadrzaj, class: 'form-control'
+        .col-lg-2
+        .col-lg-1
+          = b.link_to_remove "X", :class => "btn btn-danger btn-xs"
       = b.fields_for :odgovori do |p|
         = p.label :sadrzaj, "Odgovor"
         = p.text_field :sadrzaj 
-        = p.link_to_remove "Skloni odgovor", :class => "btn btn-danger btn-xs"
-      = b.link_to_add "Dodaj odgovor", :odgovori, :class => "btn btn-primary btn-xs"
-      = b.link_to_remove "Skloni pitanje", :class => "btn btn-danger btn-xs"      
-  = f.link_to_add "Dodaj pitanje", :pitanja, :class => "btn btn-primary btn-xs"
-  = f.submit 'Sacuvaj Anketu', :class => "btn btn-info"
+        = p.link_to_remove "X", :class => "btn btn-danger btn-xs"
+      = b.link_to_add "Dodaj odgovor", :odgovori, :class => "btn btn-info btn-xs"      
+  %center
+    = f.link_to_add "++++++ Dodaj pitanje ++++++++", :pitanja, :class => "btn btn-info btn-xl"
+  %center 
+    %br 
+      = f.submit 'Sacuvaj Anketu', :class => "btn btn-default"
