@@ -1,5 +1,4 @@
 class Pitanje < ActiveRecord::Base
-  ODGOVORI_COUNT_MIN = 2
   validate do
     check_odgovori_number
   end
@@ -8,13 +7,10 @@ class Pitanje < ActiveRecord::Base
   accepts_nested_attributes_for :odgovori, :reject_if => lambda { |a| a[:sadrzaj].blank? }, :allow_destroy => true   
 
   private
-    def odgovori_count_valid?
-      odgovori.count >= ODGOVORI_COUNT_MIN
-    end
 
     def check_odgovori_number
-      unless odgovori_count_valid?
-        errors.add("Morate uneti bar 2 ogovora za svako pitanje")
+      unless odgovori.size >= 2
+        errors.add :odgovori, ' - Morate imati minimum dva ponudjena odgovora na svako pitanje'
       end
     end  
 end

@@ -30,8 +30,6 @@ class AnketeController < ApplicationController
       end
   end
 
-  # PATCH/PUT /ankete/1
-  # PATCH/PUT /ankete/1.json
   def update
     respond_to do |format|
       if self.anketa.update(anketa_params)
@@ -44,8 +42,6 @@ class AnketeController < ApplicationController
     end
   end
 
-  # DELETE /ankete/1
-  # DELETE /ankete/1.json
   def destroy
     anketa.destroy
     respond_to do |format|
@@ -57,6 +53,6 @@ class AnketeController < ApplicationController
   private
 
     def anketa_params
-      params.require(:anketa).permit(:naslov, :opis, :kategorija_id, pitanja_attributes: [:id, :sadrzaj, :anketa_id, :_destroy])
+      params.require(:anketa).permit(:naslov, :opis, :kategorija_id, :pitanja_attributes => [:id, :sadrzaj, :anketa_id, :_destroy, :odgovori_attributes => [:id, :sadrzaj, :pitanje_id, :_destroy]])
     end
 end

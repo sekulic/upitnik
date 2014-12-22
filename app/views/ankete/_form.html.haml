@@ -16,12 +16,14 @@
     = f.label :kategorija_id
     = f.select :kategorija_id, kategorije.collect {|p| [ p.	ime, p.id ] }, {}, :class => 'form-control', :include_blank => false, class: 'form-control'
   = f.fields_for :pitanja do |b|
-    = b.text_field :sadrzaj
-    = b.fields_for :odgovori do |p|
-      = p.label :sadrzaj, "Odgovor"
-      = p.text_field :sadrzaj 
-      = p.link_to_remove "Skloni odgovor"
-    = b.link_to_add "Dodaj odgovor", :odgovori
-    = b.link_to_remove "Skloni pitanje"      
-  = f.link_to_add "Dodaj pitanje", :pitanja
+    .form-group
+      = f.label "pitanje"
+      = b.text_field :sadrzaj, class: 'form-control'
+      = b.fields_for :odgovori do |p|
+        = p.label :sadrzaj, "Odgovor"
+        = p.text_field :sadrzaj 
+        = p.link_to_remove "Skloni odgovor", :class => "btn btn-danger btn-xs"
+      = b.link_to_add "Dodaj odgovor", :odgovori, :class => "btn btn-primary btn-xs"
+      = b.link_to_remove "Skloni pitanje", :class => "btn btn-danger btn-xs"      
+  = f.link_to_add "Dodaj pitanje", :pitanja, :class => "btn btn-primary btn-xs"
   = f.submit 'Sacuvaj Anketu', :class => "btn btn-info"
