@@ -7,7 +7,7 @@ class Anketa < ActiveRecord::Base
   validates :naslov, presence: true
   validates :opis, presence: true
   validates :kategorija_id, presence: true
-  has_many :pitanja, :dependent => :destroy  
+  has_many :pitanja, dependent: :destroy  
   accepts_nested_attributes_for :pitanja, :reject_if => lambda { |a| a[:sadrzaj].blank? }, :allow_destroy => true
   
   private

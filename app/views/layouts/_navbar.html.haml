@@ -1,0 +1,11 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand(href="#") ANKETA
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "Početna", root_path, class: 'bold-text-navbar'
+        %li= link_to "Nova Anketa", new_anketa_path, class: 'bold-text-navbar'
