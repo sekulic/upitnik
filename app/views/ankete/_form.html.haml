@@ -1,10 +1,11 @@
 = nested_form_for anketa, :html => { :class => 'form-horizontal' } do |f|
   - if anketa.errors.any?
     #error_explanation
-      %h2= "#{pluralize_greska(anketa.errors.count)} Anketu da bude uspešno sačuvana :"
-      %ul
-        - anketa.errors.full_messages.each do |msg|
-          %li= msg
+      .alert.alert-dismissable.alert-danger
+        %strong= "#{pluralize_greska(anketa.errors.count)} Anketu da bude uspešno sačuvana :"
+        %ul
+          - anketa.errors.full_messages.each do |msg|
+            %li= msg
   .well.bs-component
     .form-group
       = f.label :naslov
