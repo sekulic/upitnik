@@ -1,15 +1,23 @@
 .row
-  .col-lg-2
+  .col-lg-1
   .col-lg-5
-    .page-header
-      %h1  
-        =anketa.naslov  
-      %h1  
-      - anketa.pitanja.each do |pitanje|   
-        =pitanje.sadrzaj
+    .well.bs-component
+      %legend  
+        =anketa.naslov
+      %p.text-info
+        =anketa.opis   
+      = form_tag root_path, :multipart => true, method: :post, :html => { :class => 'form-horizontal' }  
+      - anketa.pitanja.each do |pitanje| 
+        %h4
+          %b  
+            =pitanje.sadrzaj
         %strong
-        - pitanje.odgovori.each do |odgovor|  
-          =odgovor.sadrzaj    
+        - pitanje.odgovori.each do |odgovor|
+          .form-group
+            .col-lg-10.radio 
+              %b 
+                =radio_button_tag 'odgovor', odgovor
+                =odgovor.sadrzaj
 
       
                  
@@ -17,3 +25,4 @@
     .page-header
       %h1
         =anketa.naslov
+  .col-lg-1
