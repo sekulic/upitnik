@@ -4,6 +4,7 @@ class AnketeController < ApplicationController
   expose(:anketa, attributes: :anketa_params)
   expose(:kategorija)
   expose(:kategorije)
+  expose(:pitanja)  
     
   def index
   end

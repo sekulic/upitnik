@@ -1,3 +1,19 @@
-.page-header
-	%h1
-		=anketa.naslov
+.row
+  .col-lg-2
+  .col-lg-5
+    .page-header
+      %h1  
+        =anketa.naslov  
+      %h1  
+      - anketa.pitanja.each do |pitanje|   
+        =pitanje.sadrzaj
+        %strong
+        - pitanje.odgovori.each do |odgovor|  
+          =odgovor.sadrzaj    
+
+      
+                 
+  .col-lg-5  
+    .page-header
+      %h1
+        =anketa.naslov
