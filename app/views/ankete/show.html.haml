@@ -14,10 +14,9 @@
           %strong
           - pitanje.odgovori.each do |odgovor|
             .form-group
-              .col-lg-10.radio 
-                %b 
-                  =radio_button_tag 'odgovor', odgovor
-                  =odgovor.sadrzaj
+              %b 
+                =radio_button_tag 'odgovor', odgovor
+                =odgovor.sadrzaj
         .form-group
           = submit_tag 'Rezultat', :class => "btn btn-primary"      
                  
